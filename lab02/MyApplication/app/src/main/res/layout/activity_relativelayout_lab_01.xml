@@ -64,13 +64,12 @@
         android:id="@+id/textViewYellow1"
         android:layout_width="100dp"
         android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
         android:background="#ffd000"
         android:gravity="center"
         android:text="Hello"
         android:textColor="#FF190481"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
-        />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textViewYellow2"
@@ -103,14 +102,13 @@
         android:id="@+id/textViewYellow4"
         android:layout_width="100dp"
         android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:background="#ffd000"
         android:gravity="center"
         android:text="Hello"
         android:textColor="#FF190481"
-        android:textSize="20sp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
- />
+        android:textSize="20sp" />
 
 
 </RelativeLayout>
