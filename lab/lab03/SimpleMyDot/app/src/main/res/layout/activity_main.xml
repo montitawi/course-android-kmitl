@@ -26,7 +26,7 @@
 
     <kmitl.lab03.montita58070114.simplemydot.view.DotView
         android:id="@+id/dotView"
-        android:layout_width="404dp"
+        android:layout_width="wrap_content"
         android:layout_height="538dp"
         tools:layout_editor_absoluteY="5dp"
         tools:layout_editor_absoluteX="4dp" />

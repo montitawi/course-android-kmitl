@@ -1,9 +1,6 @@
 package kmitl.lab03.montita58070114.simplemydot.model;
 
-import android.view.MotionEvent;
-
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Dot {
 
@@ -36,6 +33,9 @@ public class Dot {
         listCenterx.clear();
         listCentery.clear();
         listRadius.clear();
+        listred.clear();
+        listgreen.clear();
+        listblue.clear();
         this.listener.onDotChangeListener(this);
     }
 

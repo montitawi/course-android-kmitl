@@ -24,9 +24,9 @@ public class DotView extends View {
         if (dot != null) {
             Random random = new Random();
             for(int i = 0 ;i < dot.getlistCenterx().size();i++){
-                canvas.drawCircle(dot.getlistCenterx().get(i), dot.getlistCentery().get(i), dot.getlistRadius().get(i), paint);
                 int colorDot = Color.argb(255,dot.getListred().get(i),dot.getListgreen().get(i),dot.getListblue().get(i));
                 paint.setColor(colorDot);
+                canvas.drawCircle(dot.getlistCenterx().get(i), dot.getlistCentery().get(i), dot.getlistRadius().get(i), paint);
             }
 
         }

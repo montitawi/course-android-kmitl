@@ -1,14 +1,11 @@
 package kmitl.lab03.montita58070114.simplemydot;
 
-import android.graphics.Color;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-
-import java.util.ArrayList;
 import java.util.Random;
-
 import kmitl.lab03.montita58070114.simplemydot.model.Dot;
 import kmitl.lab03.montita58070114.simplemydot.view.DotView;
 
