@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SimpleMyDot</string>
+    <string name="random_dot">RANDOM DOT</string>
+    <string name="remove_all_dot">Remove All Dot</string>
+    <string name="send_to" />
+    <string name="dialog_fire_missiles" />
+    <string name="fire" />
+</resources>
