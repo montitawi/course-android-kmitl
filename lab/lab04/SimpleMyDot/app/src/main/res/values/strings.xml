@@ -7,4 +7,5 @@
     <string name="fire" />
     <string name="sharing_text" />
     <string name="share_title" />
+    <string name="open_activity">open activity</string>
 </resources>

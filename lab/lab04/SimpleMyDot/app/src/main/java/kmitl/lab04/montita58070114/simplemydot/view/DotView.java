@@ -25,7 +25,7 @@ public class DotView extends View {
                 paint.setColor(dot.getColor());
                 canvas.drawCircle(
                         dot.getCenterX(),
-                        dot.getCenterY(), 30, paint);
+                        dot.getCenterY(), dot.getRadius(), paint);
             }
         }
     }

@@ -23,20 +23,20 @@ import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
 import kmitl.lab04.montita58070114.simplemydot.model.DotParcelable;
 
 
-public class EditActivity extends AppCompatActivity {
+public class EditDotActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
-        setTitle("Edit Dot");
+        setContentView(R.layout.activity_edit_dot);
+        setTitle("Edit My Dot");
         alertDialog();
     }
 
     public void alertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("What you want to edit?");
+        alertDialogBuilder.setTitle("Select Edit Size or Color");
         alertDialogBuilder
                 .setMessage("")
                 .setCancelable(false)
@@ -56,7 +56,7 @@ public class EditActivity extends AppCompatActivity {
 
     private void colorPicker() {
         final DotParcelable dotParcelable = getIntent().getParcelableExtra("dotParcelable");
-        final ColorPicker cp = new ColorPicker(EditActivity.this, Color.red(dotParcelable.getColor()),
+        final ColorPicker cp = new ColorPicker(EditDotActivity.this, Color.red(dotParcelable.getColor()),
                 Color.green(dotParcelable.getColor()), Color.blue(dotParcelable.getColor()));
         cp.show();
         cp.setCancelable(false);
@@ -65,7 +65,7 @@ public class EditActivity extends AppCompatActivity {
             public void onColorChosen(@ColorInt int c) {
                 int color = Color.rgb(Color.red(c), Color.green(c), Color.blue(c));
                 final DotParcelable reDotParcelable = new DotParcelable(dotParcelable.getDotPosition(), color);
-                Intent returnIntent = new Intent(EditActivity.this, MainActivity.class);
+                Intent returnIntent = new Intent(EditDotActivity.this, MainActivity.class);
                 returnIntent.putExtra("reDotParcelable", reDotParcelable);
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
@@ -86,7 +86,7 @@ public class EditActivity extends AppCompatActivity {
         text.setPadding(500, 50, 0, 50);
         text.setText("Radius: " + dotParcelable.getRadius());
         final SeekBar seek = new SeekBar(this);
-        seek.setMax(120);
+        seek.setMax(200);
         seek.setProgress(dotParcelable.getRadius());
         seek.setKeyProgressIncrement(1);
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -111,7 +111,7 @@ public class EditActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int id) {
                 final DotParcelable reDotParcelable = new DotParcelable(dotParcelable.getDotPosition());
                 reDotParcelable.setRadius(seek.getProgress());
-                Intent returnIntent = new Intent(EditActivity.this, MainActivity.class);
+                Intent returnIntent = new Intent(EditDotActivity.this, MainActivity.class);
                 returnIntent.putExtra("reDotParcelable", reDotParcelable);
                 setResult(2, returnIntent);
                 Toast.makeText(getApplicationContext(), "Changed", Toast.LENGTH_LONG).show();

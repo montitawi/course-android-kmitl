@@ -2,9 +2,7 @@ package kmitl.lab04.montita58070114.simplemydot.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by student on 9/8/2017 AD.
- */
+
 
 public class DotParcelable implements Parcelable {
     private int centerX;
@@ -12,6 +10,17 @@ public class DotParcelable implements Parcelable {
     private int radius;
     private int dotPosition;
     private int color;
+
+    @Override
+    public String toString() {
+        return "DotParcelable{" +
+                "centerX=" + centerX +
+                ", centerY=" + centerY +
+                ", radius=" + radius +
+                ", dotPosition=" + dotPosition +
+                ", color=" + color +
+                '}';
+    }
 
     public DotParcelable(int dotPosition){
         this.dotPosition = dotPosition;
@@ -38,7 +47,7 @@ public class DotParcelable implements Parcelable {
     }
 
 
-    protected DotParcelable(Parcel in) {
+    private DotParcelable(Parcel in) {
         centerX = in.readInt();
         centerY = in.readInt();
         radius = in.readInt();

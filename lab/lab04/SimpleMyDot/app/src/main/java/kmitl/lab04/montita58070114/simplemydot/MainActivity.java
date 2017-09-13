@@ -1,7 +1,6 @@
 package kmitl.lab04.montita58070114.simplemydot;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,8 +15,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import kmitl.lab04.montita58070114.simplemydot.model.Colors;
@@ -72,7 +69,8 @@ public class MainActivity extends AppCompatActivity
         Random random = new Random();
         int centerX = random.nextInt(dotView.getWidth());
         int centerY = random.nextInt(dotView.getHeight());
-        Dot newDot = new Dot(centerX, centerY, 30, new Colors().createColor());
+        int radius = random.nextInt(200);
+        Dot newDot = new Dot(centerX, centerY, radius, new Colors().createColor());
         dots.addDot(newDot);
     }
 
@@ -88,9 +86,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDotViewPressed(int x, int y) {
+        Random random = new Random();
+        int radius = random.nextInt(200);
         int dotPosition = dots.findDot(x, y);
         if (dotPosition == -1) {
-            Dot newDot = new Dot(x, y, 30, new Colors().createColor());
+            Dot newDot = new Dot(x, y, radius, new Colors().createColor());
             dots.addDot(newDot);
         } else {
             alertDialog(dotPosition);
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity
     public void alertDialog(final int dotPosition) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("What you want to do?");
+        alertDialogBuilder.setTitle("Hello ! Select Edit or Delete");
         alertDialogBuilder
                 .setMessage("")
                 .setCancelable(true)
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
                 .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         DotParcelable dotParcelable = new DotParcelable(dotPosition, dots.getAllDot().get(dotPosition).getColor(), dots.getAllDot().get(dotPosition).getRadius());
-                        Intent editActIntent = new Intent(MainActivity.this, EditActivity.class);
+                        Intent editActIntent = new Intent(MainActivity.this, EditDotActivity.class);
                         editActIntent.putExtra("dotParcelable", dotParcelable);
                         startActivityForResult(editActIntent, 1);
                     }

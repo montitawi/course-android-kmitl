@@ -8,10 +8,10 @@ public class Colors {
 
     public int createColor() {
         Random random = new Random();
-        int r = random.nextInt(255);
-        int g = random.nextInt(255);
-        int b = random.nextInt(255);
+        int red = random.nextInt(255);
+        int green = random.nextInt(255);
+        int blue = random.nextInt(255);
 
-        return Color.rgb(r, g, b);
+        return Color.rgb(red, green, blue);
     }
 }
