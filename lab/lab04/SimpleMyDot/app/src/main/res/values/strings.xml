@@ -5,4 +5,6 @@
     <string name="send_to" />
     <string name="dialog_fire_missiles" />
     <string name="fire" />
+    <string name="sharing_text" />
+    <string name="share_title" />
 </resources>

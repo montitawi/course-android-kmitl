@@ -2,25 +2,16 @@ package kmitl.lab04.montita58070114.simplemydot.model;
 
 import android.graphics.Color;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Colors {
-    private List<Integer> colorList = new ArrayList<>();
 
-    public Colors() {
-        colorList.add(Color.RED);
-        colorList.add(Color.GREEN);
-        colorList.add(Color.BLUE);
-        colorList.add(Color.CYAN);
-        colorList.add(Color.MAGENTA);
-        colorList.add(Color.YELLOW);
-        colorList.add(Color.GRAY);
-    }
+    public int createColor() {
+        Random random = new Random();
+        int r = random.nextInt(255);
+        int g = random.nextInt(255);
+        int b = random.nextInt(255);
 
-    public int getColor() {
-        return colorList.get(
-                new Random().nextInt(colorList.size()));
+        return Color.rgb(r, g, b);
     }
 }

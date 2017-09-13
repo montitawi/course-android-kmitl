@@ -1,17 +1,22 @@
 package kmitl.lab04.montita58070114.simplemydot;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+
 import android.net.Uri;
-import android.os.Parcelable;
-import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -28,8 +33,6 @@ public class MainActivity extends AppCompatActivity
 
     private DotView dotView;
     private Dots dots;
-    private ScreenShot screen;
-    private ScreenShot bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,8 @@ public class MainActivity extends AppCompatActivity
         dotSerializable.setCenterY(150);
         dotSerializable.setRadius(30);
 
-        final DotParcelable dotParcelable = new DotParcelable(150, 150, 50);
+
+        final DotParcelable dotParcelable = new DotParcelable(150, 150, 50,20);
 
         Button btnOpenActivity = (Button) findViewById(R.id.btnOpenActivity);
         btnOpenActivity.setOnClickListener(new View.OnClickListener() {
@@ -56,29 +60,6 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
-        Button btnShare = (Button) findViewById(R.id.btnShare);
-        btnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                screen = new ScreenShot();
-                bitmap = new ScreenShot();
-                bitmap.createBitmap(dotView);
-                String fileName = "dotViewImg.png";
-                screen.saveBitmap(bitmap, fileName);
-                File file = new File(getCacheDir(), fileName);
-                Uri contentUri = FileProvider.getUriForFile(getApplicationContext(),
-                        "kmitl.lab04.montita58070114.simplemydot.fileprovider", file);
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
-                shareIntent.setType("image/jpeg");
-                startActivity(Intent.createChooser(shareIntent, "Share to"));
-
-            }
-
-        });
-
         dotView = (DotView) findViewById(R.id.dotView);
         dotView.setOnDotViewPressListener(this);
 
@@ -86,11 +67,12 @@ public class MainActivity extends AppCompatActivity
         dots.setListener(this);
     }
 
+
     public void onRandomDot(View view) {
         Random random = new Random();
         int centerX = random.nextInt(dotView.getWidth());
         int centerY = random.nextInt(dotView.getHeight());
-        Dot newDot = new Dot(centerX, centerY, 30, new Colors().getColor());
+        Dot newDot = new Dot(centerX, centerY, 30, new Colors().createColor());
         dots.addDot(newDot);
     }
 
@@ -108,10 +90,65 @@ public class MainActivity extends AppCompatActivity
     public void onDotViewPressed(int x, int y) {
         int dotPosition = dots.findDot(x, y);
         if (dotPosition == -1) {
-            Dot newDot = new Dot(x, y, 30, new Colors().getColor());
+            Dot newDot = new Dot(x, y, 30, new Colors().createColor());
             dots.addDot(newDot);
         } else {
-            dots.removeBy(dotPosition);
+            alertDialog(dotPosition);
         }
     }
+
+
+    public void onShareScreenshot(View view) {
+        Bitmap bitmap = ScreenShot.getScreenShot(dotView);
+        File saveFilePath = ScreenShot.getMainDirectoryName(this);
+        File file = ScreenShot.store(bitmap, "screenshot.jpg", saveFilePath);
+        Uri uri = Uri.fromFile(file);
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        intent.setType("image/jpg");
+        startActivity(Intent.createChooser(intent, "send image"));
+    }
+    public void alertDialog(final int dotPosition) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("What you want to do?");
+        alertDialogBuilder
+                .setMessage("")
+                .setCancelable(true)
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dots.removeBy(dotPosition);
+                        Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        DotParcelable dotParcelable = new DotParcelable(dotPosition, dots.getAllDot().get(dotPosition).getColor(), dots.getAllDot().get(dotPosition).getRadius());
+                        Intent editActIntent = new Intent(MainActivity.this, EditActivity.class);
+                        editActIntent.putExtra("dotParcelable", dotParcelable);
+                        startActivityForResult(editActIntent, 1);
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            DotParcelable dotParcelable = data.getParcelableExtra("reDotParcelable");
+            if (resultCode == Activity.RESULT_OK) {
+                dots.getAllDot().get(dotParcelable.getDotPosition()).setColor(dotParcelable.getColor());
+            } else {
+                dots.getAllDot().get(dotParcelable.getDotPosition()).setRadius(dotParcelable.getRadius());
+            }
+        }
+    }
+
+
+
+
 }
+
+
