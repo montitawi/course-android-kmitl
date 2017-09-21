@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +23,19 @@ import kmitl.lab04.montita58070114.simplemydot.model.ScreenShot;
 import kmitl.lab04.montita58070114.simplemydot.view.DotView;
 
 public class DotFragment extends Fragment implements DotView.OnDotViewPressListener, Dots.OnDotsChangeListener, View.OnClickListener {
+    public interface OnDotSelectListener {
+        void onDotSelect(Dot dot, int position);
+    }
+
+    private OnDotSelectListener listener;
     private Dots dots;
     private DotView dotView;
+    private static final String ALLDOT = "allDot";
 
     public DotFragment() {
         // Required empty public constructor
     }
+
 
     public static DotFragment newInstance() {
 
@@ -38,11 +46,36 @@ public class DotFragment extends Fragment implements DotView.OnDotViewPressListe
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            dots = savedInstanceState.getParcelable(ALLDOT);
+        } else {
+            dots = new Dots();
+        }
+        dots.setListener(this);
+        listener = (OnDotSelectListener) getActivity();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        dotView.setDots(dots);
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(ALLDOT, dots);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_dot, container, false);
         initSetup(rootView);
-        dots = new Dots();
+        //dots = new Dots();
         dots.setListener(this);
         return rootView;
     }
@@ -101,8 +134,8 @@ public class DotFragment extends Fragment implements DotView.OnDotViewPressListe
             if (status.equals("short")) {
                 dots.removeBy(dotPosition);
             } else {
-                Dot newDot = new Dot(x, y, radius, new Colors().createColor());
-                dots.addDot(newDot);
+                listener.onDotSelect(dots.getAllDot().get(dotPosition), dotPosition);
+
             }
         }
     }

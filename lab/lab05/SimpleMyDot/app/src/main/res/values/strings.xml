@@ -14,4 +14,7 @@
     <string name="clear_dot">CLEAR DOT</string>
     <string name="undo">UNDO</string>
     <string name="share">SHARE</string>
+    <string name="descr_overflow_button" />
+    <string name="save">SAVE</string>
+    <string name="cancel">CANCEL</string>
 </resources>

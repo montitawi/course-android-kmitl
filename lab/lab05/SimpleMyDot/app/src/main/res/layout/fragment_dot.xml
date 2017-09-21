@@ -16,7 +16,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/undo" />
+            android:text="@string/undo"
+            android:background="#00ffb7"/>
 
 
         <Button
@@ -24,7 +25,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/share" />
+            android:text="@string/share"
+            android:background="#ff006f"/>
     </LinearLayout>
 
     <kmitl.lab04.montita58070114.simplemydot.view.DotView
@@ -45,7 +47,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/random_dot" />
+            android:text="@string/random_dot"
+            android:background="#ff6213"/>
 
 
         <Button
@@ -53,7 +56,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/clear_dot" />
+            android:text="@string/clear_dot"
+            android:background="#006fff"/>
 
     </LinearLayout>
 

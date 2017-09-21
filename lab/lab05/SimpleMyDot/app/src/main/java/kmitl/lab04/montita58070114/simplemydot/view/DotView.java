@@ -17,6 +17,7 @@ public class DotView extends View {
     private long stopTouch;
     private Paint paint;
     private Dots allDot;
+    private OnDotViewPressListener onDotViewPressListener;
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -35,7 +36,6 @@ public class DotView extends View {
         void onDotViewPressed(int x, int y, String status);
     }
 
-    private OnDotViewPressListener onDotViewPressListener;
 
     public void setOnDotViewPressListener(
             OnDotViewPressListener onDotViewPressListener) {
@@ -50,7 +50,7 @@ public class DotView extends View {
         if (event.getAction() == MotionEvent.ACTION_UP) {
             stopTouch = event.getEventTime();
             long timeTouched = stopTouch - startTouch;
-            if (timeTouched < 200) {
+            if (timeTouched < 300) {
                 this.onDotViewPressListener
                         .onDotViewPressed(
                                 (int) event.getX(),
@@ -88,4 +88,5 @@ public class DotView extends View {
     public void setDots(Dots dots) {
         this.allDot = dots;
     }
+
 }
