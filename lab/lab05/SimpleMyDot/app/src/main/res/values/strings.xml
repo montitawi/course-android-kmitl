@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SimpleMyDot</string>
+    <string name="random_dot">RANDOM DOT</string>
+    <string name="remove_all_dot">Remove All Dot</string>
+    <string name="send_to" />
+    <string name="dialog_fire_missiles" />
+    <string name="fire" />
+    <string name="sharing_text" />
+    <string name="share_title" />
+    <string name="open_activity">open activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="clear_dot">CLEAR DOT</string>
+    <string name="undo">UNDO</string>
+    <string name="share">SHARE</string>
+</resources>
