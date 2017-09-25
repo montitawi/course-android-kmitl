@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.SeekBar;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +27,8 @@ public class EditDotFragment extends Fragment {
     private static final String DOT = "dot";
     private Dot dot;
     private int position;
+    private int currentX;
+    private int currentY;
     private int currentSize;
     private int currentColor;
     OnDotUpdatedListener listener;
@@ -74,12 +76,16 @@ public class EditDotFragment extends Fragment {
         Toast.makeText(getContext(), "Edit Dot", Toast.LENGTH_SHORT).show();
         final Button btnChangeColor = (Button) rootView.findViewById(R.id.btnChangeColor);
         final TextView colorText = (TextView) rootView.findViewById(R.id.colorText);
-        colorText.setTextColor(dot.getColor());
+        colorText.setBackgroundColor(dot.getColor());
         currentColor = dot.getColor();
-        final SeekBar sizeSeekBar = (SeekBar) rootView.findViewById(R.id.sizeSeekBar);
-        final TextView sizeText = (TextView) rootView.findViewById(R.id.sizeTV);
+        final EditText radius = (EditText) rootView.findViewById(R.id.radius);
+        final EditText positionX = (EditText) rootView.findViewById(R.id.positionX);
+        final EditText positionY = (EditText) rootView.findViewById(R.id.positionY);
         Button btnCancel = (Button) rootView.findViewById(R.id.btnCancel);
         Button btnOK = (Button) rootView.findViewById(R.id.btnOK);
+        radius.setText(String.valueOf(dot.getRadius()));
+        positionX.setText(String.valueOf(dot.getCenterX()));
+        positionY.setText(String.valueOf(dot.getCenterY()));
 
         btnChangeColor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +97,7 @@ public class EditDotFragment extends Fragment {
                     @Override
                     public void onColorChosen(@ColorInt int c) {
                         int color = Color.rgb(Color.red(c), Color.green(c), Color.blue(c));
-                        colorText.setTextColor(color);
+                        colorText.setBackgroundColor(color);
                         currentColor = color;
                         cp.cancel();
                     }
@@ -100,31 +106,14 @@ public class EditDotFragment extends Fragment {
         });
 
 
-        sizeSeekBar.setProgress(dot.getRadius());
-        sizeSeekBar.setMax(200);
-        sizeText.setText("Size: " + dot.getRadius());
-        sizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                sizeText.setText("Radius: " + i);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentSize = sizeSeekBar.getProgress();
+                currentX = Integer.parseInt(positionX.getText().toString());
+                currentY = Integer.parseInt(positionY.getText().toString());
+                currentSize = Integer.parseInt(radius.getText().toString());
+                dot.setCenterX(currentX);
+                dot.setCenterY(currentY);
                 dot.setRadius(currentSize);
                 dot.setColor(currentColor);
                 listener.onDotUpdate(dot, position);

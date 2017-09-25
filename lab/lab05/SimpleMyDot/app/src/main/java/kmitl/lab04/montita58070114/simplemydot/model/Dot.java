@@ -30,8 +30,16 @@ public class Dot implements Parcelable {
         return centerX;
     }
 
+    public void setCenterX(int centerX) {
+        this.centerX = centerX;
+    }
+
     public int getCenterY() {
         return centerY;
+    }
+
+    public void setCenterY(int centerY) {
+        this.centerY = centerY;
     }
 
     public int getRadius() {

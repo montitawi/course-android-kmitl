@@ -17,4 +17,12 @@
     <string name="descr_overflow_button" />
     <string name="save">SAVE</string>
     <string name="cancel">CANCEL</string>
+    <string name="x_axis" />
+    <string name="y_axis" />
+    <string name="change_color">Change Color</string>
+    <string name="size">Size</string>
+    <string name="ok">OK</string>
+    <string name="position_x">Position X</string>
+    <string name="position_y">Position Y</string>
+    <string name="dot_size">Dot Size</string>
 </resources>

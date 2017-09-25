@@ -17,37 +17,74 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingLeft="40dp"
-            android:text="Color"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:paddingLeft="40dp" />
 
         <Button
             android:id="@+id/btnChangeColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Change Color" />
+            android:text="@string/change_color" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/position_x"
+            android:textColor="#00b6b0"
+            android:textSize="30dp"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/positionX"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="117dp"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/position_y"
+            android:textColor="#ff6924"
+            android:textSize="30dp"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/positionY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="128dp"
-        android:orientation="vertical"
+        android:layout_height="117dp"
+        android:orientation="horizontal"
         android:paddingTop="20dp">
 
         <TextView
-            android:id="@+id/sizeTV"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="Size" />
-
-        <SeekBar
-            android:id="@+id/sizeSeekBar"
+            android:layout_height="wrap_content"
+            android:text="@string/dot_size"
+            android:textColor="#ff4381"
+            android:textSize="30dp"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/radius"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
@@ -64,13 +101,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/btnOK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="OK" />
+            android:text="@string/ok" />
     </LinearLayout>
 </LinearLayout>
