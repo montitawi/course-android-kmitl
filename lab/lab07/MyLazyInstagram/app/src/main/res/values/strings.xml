@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyLazyInstagram</string>
+    <string name="comment">comment</string>
+    <string name="like">like</string>
+    <string name="android">android</string>
+    <string name="nature">nature</string>
+    <string name="cartoon">cartoon</string>
+    <string name="grid">Grid</string>
+    <string name="linear">Linear</string>
+</resources>
