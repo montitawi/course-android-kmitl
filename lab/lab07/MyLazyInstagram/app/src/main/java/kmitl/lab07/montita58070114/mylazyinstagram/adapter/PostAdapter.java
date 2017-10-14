@@ -36,19 +36,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Holder> {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, null);
         Holder holder = new Holder(itemView);
         return holder;
-//        View view;
-//        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-//        view = inflater.inflate(R.layout.item, null, false);
-//        Holder holder = new Holder(view);
-//        return holder;
+
     }
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         String imageUrl = data.get(position).getUrl();
+        TextView like = holder.like;
+        TextView comment = holder.comment;
         Glide.with(activity).load(imageUrl).into(holder.imageView);
-//        holder.like.setText(data.get(position).getLike());
-//        holder.comment.setText(data.get(position).getComment());
+        like.setText(String.valueOf(data.get(position).getLike()));
+        comment.setText(String.valueOf(data.get(position).getComment()));
     }
 
     @Override
@@ -64,8 +62,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Holder> {
         public Holder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-//            comment =  comment.findViewById(R.id.comment);
-//            like =  like.findViewById(R.id.like);
+            comment = itemView.findViewById(R.id.comment);
+            like = itemView.findViewById(R.id.like);
         }
     }
 }

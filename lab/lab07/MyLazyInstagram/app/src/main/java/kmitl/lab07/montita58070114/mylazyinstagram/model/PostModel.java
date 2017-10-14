@@ -5,23 +5,23 @@ package kmitl.lab07.montita58070114.mylazyinstagram.model;
  */
 
 public class PostModel {
-    private String comment;
-    private String like;
+    private int comment;
+    private int like;
     private String url;
 
-    public String getComment() {
+    public int getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public void setComment(int comment) {
         this.comment = comment;
     }
 
-    public String getLike() {
+    public int getLike() {
         return like;
     }
 
-    public void setLike(String like) {
+    public void setLike(int like) {
         this.like = like;
     }
 

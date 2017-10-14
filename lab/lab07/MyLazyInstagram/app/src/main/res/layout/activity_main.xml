@@ -11,12 +11,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/imageProfile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_vertical"
-            android:background="#2f2f2f" />
+            app:civ_border_color="#69075d"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="#360142"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/grid"
-            android:background="#53e98c"
+            android:background="#C8C8C8"
             android:textAlignment="center" />
 
         <Button
@@ -62,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/linear"
-            android:background="#2edaed"
+            android:background="#F45B69"
             android:textAlignment="center" />
 
     </LinearLayout>

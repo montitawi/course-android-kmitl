@@ -1,10 +1,12 @@
 package kmitl.lab07.montita58070114.mylazyinstagram;
 
+
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getUserProfile("cartoon");
+        getUserProfile("android");
+
+        alertDialog();
 
         Button btnGrid = findViewById(R.id.btnGrid);
         Button btnLinear = findViewById(R.id.btnLinear);
@@ -55,6 +59,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void alertDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Change User");
+        alertDialogBuilder
+                .setMessage("Press Option menu for Change User")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     private void getUserProfile(String userName) {
@@ -80,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
 
     }
@@ -118,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    // handle button activities
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -135,9 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
         }
     }
-
-
-
 
 
 }
