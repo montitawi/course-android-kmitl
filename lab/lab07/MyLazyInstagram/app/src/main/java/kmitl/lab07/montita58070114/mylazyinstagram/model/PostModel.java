@@ -1,8 +1,6 @@
 package kmitl.lab07.montita58070114.mylazyinstagram.model;
 
-/**
- * Created by montitawichianchai on 10/13/2017 AD.
- */
+
 
 public class PostModel {
     private int comment;

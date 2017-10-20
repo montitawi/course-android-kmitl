@@ -19,8 +19,8 @@
             app:civ_border_color="#69075d"
             app:civ_border_width="4dp"
             app:civ_shadow="true"
-            app:civ_shadow_radius="10"
-            app:civ_shadow_color="#360142"/>
+            app:civ_shadow_color="#360142"
+            app:civ_shadow_radius="10" />
 
 
         <LinearLayout
@@ -43,6 +43,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Bio : bla bla bla" />
+
+            <ToggleButton
+                android:id="@+id/btnFollow"
+                android:layout_width="227dp"
+                android:layout_height="match_parent"
+                android:textColor="#2a8dff"
+                android:textOff="Unfollow"
+                android:textOn="Follow" />
         </LinearLayout>
     </LinearLayout>
 
@@ -57,8 +65,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/grid"
             android:background="#C8C8C8"
+            android:text="@string/grid"
             android:textAlignment="center" />
 
         <Button
@@ -66,8 +74,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/linear"
             android:background="#F45B69"
+            android:text="@string/linear"
             android:textAlignment="center" />
 
     </LinearLayout>
@@ -78,4 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_weight="0.92" />
+
+
+
 </LinearLayout>
