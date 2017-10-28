@@ -89,7 +89,7 @@ public class MainActivityTest {
         onView(withId(R.id.editTExtName)).perform(replaceText("Ying"), closeSoftKeyboard());
         onView(withId(R.id.editTextAge)).perform(replaceText("20"), closeSoftKeyboard());
         onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
-        
+
         onView(withId(R.id.editTExtName)).perform(replaceText("Ladarat"), closeSoftKeyboard());
         onView(withId(R.id.editTextAge)).perform(replaceText("20"), closeSoftKeyboard());
         onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
