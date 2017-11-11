@@ -15,12 +15,12 @@ public class GetAmountTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        List<Transaction> transactions = transactionDB.getTransactionDAO().getSumAmount();
-        if (transactions.isEmpty()){
-            listener.onGetAmountFailed();
-        }else{
-            listener.onGetAmountSuccess(transactions);
-        }
+//        List<Transaction> transactions = transactionDB.getTransactionDAO().getSumAmount();
+//        if (transactions.isEmpty()){
+//            listener.onGetAmountFailed();
+//        }else{
+//            listener.onGetAmountSuccess(transactions);
+//        }
         return null;
     }
 
