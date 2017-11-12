@@ -21,6 +21,8 @@ import kmitl.lab09.montita58070114.moneyflow.Trask.GetIncomeAmountTask;
 import kmitl.lab09.montita58070114.moneyflow.Trask.GetTransactionTask;
 import kmitl.lab09.montita58070114.moneyflow.model.Transaction;
 
+import static kmitl.lab09.montita58070114.moneyflow.model.Transaction.TransactionExtraName.TRANSACTION_EXTRA_NAME;
+
 public class MainActivity extends AppCompatActivity implements GetTransactionTask.OnGetTransactionListener,
         GetAmountTask.OnGetAmountListener, GetIncomeAmountTask.OnGetIncomeAmountListener, ListView.OnItemClickListener {
 
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements GetTransactionTas
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
         Intent intent = new Intent(MainActivity.this, TransactionActivity.class);
-        intent.putExtra("id", transactions.get(i).getId());
+        intent.putExtra(TRANSACTION_EXTRA_NAME, transactions.get(i));
         startActivity(intent);
     }
 
