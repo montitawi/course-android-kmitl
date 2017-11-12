@@ -20,6 +20,11 @@ public interface TransactionDAO {
     @Query("SELECT * FROM `TRANSACTION`")
     List<Transaction> getAllTransaction();
 
+    @Query("SELECT IFNULL(SUM(AMOUNT),0) FROM `TRANSACTION` WHERE TRANSACTION_TYPE = 'income'")
+    int getAmountIncome();
+
+    @Query("SELECT IFNULL(SUM(AMOUNT),0) - IFNULL((SELECT SUM(AMOUNT) FROM `TRANSACTION` WHERE TRANSACTION_TYPE = 'expense'),0) FROM `TRANSACTION` WHERE TRANSACTION_TYPE = 'income'")
+    int getSumAmount();
 
     @Update
     void updateTransaction(Transaction transaction);

@@ -4,6 +4,7 @@
     <item
         android:id="@+id/btnAdd"
         app:showAsAction="always"
-        android:title="@string/add" />
+        android:title="@string/add"
+        android:icon="@drawable/ic_note_add"/>
 
 </menu>

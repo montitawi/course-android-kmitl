@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Moneyflow</string>
     <string name="add">ADD</string>
+    <string name="income">income</string>
+    <string name="expense">expense</string>
+
 </resources>

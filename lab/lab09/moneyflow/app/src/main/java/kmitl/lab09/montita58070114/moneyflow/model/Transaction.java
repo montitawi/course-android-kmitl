@@ -3,9 +3,11 @@ package kmitl.lab09.montita58070114.moneyflow.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 @Entity(tableName = "TRANSACTION")
-public class Transaction {
+public class Transaction implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -17,6 +19,51 @@ public class Transaction {
 
     @ColumnInfo(name = "TRANSACTION_TYPE")
     private String transactionType;
+
+    public Transaction() {
+    }
+
+    public Transaction(String note, int amount, String transactionType) {
+        this.note = note;
+        this.amount = amount;
+        this.transactionType = transactionType;
+    }
+
+    protected Transaction(Parcel in) {
+        id = in.readInt();
+        amount = in.readInt();
+        note = in.readString();
+        transactionType = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(amount);
+        dest.writeString(note);
+        dest.writeString(transactionType);
+    }
+
+    public static class TransactionExtraName {
+        public static final String TRANSACTION_EXTRA_NAME = "transaction";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Transaction> CREATOR = new Creator<Transaction>() {
+        @Override
+        public Transaction createFromParcel(Parcel in) {
+            return new Transaction(in);
+        }
+
+        @Override
+        public Transaction[] newArray(int size) {
+            return new Transaction[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -49,6 +96,13 @@ public class Transaction {
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
     }
+
+    public void updateInfo(Transaction transaction) {
+        this.transactionType = transaction.getTransactionType();
+        this.note = transaction.getNote();
+        this.amount = transaction.getAmount();
+    }
+
     @Override
     public String toString() {
         return String.format("Type: %s \n note: %s \n amount: %s", transactionType, note, amount);

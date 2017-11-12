@@ -11,6 +11,7 @@ import kmitl.lab09.montita58070114.moneyflow.Database.TransactionDB;
 public class GetTransactionTask extends AsyncTask<Void, Void, Void>{
     private TransactionDB transactionDB;
     private OnGetTransactionListener listener;
+    private List<Transaction> transactions;
 
     public GetTransactionTask(TransactionDB transactionDB, OnGetTransactionListener listener) {
         this.transactionDB = transactionDB;
@@ -19,13 +20,18 @@ public class GetTransactionTask extends AsyncTask<Void, Void, Void>{
 
     @Override
     protected Void doInBackground(Void... voids) {
-        List<Transaction> transactions = transactionDB.getTransactionDAO().getAllTransaction();
+        transactions = transactionDB.getTransactionDAO().getAllTransaction();
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
         if (transactions.isEmpty()){
             listener.onGetTransactionListenerFailed();
         }else{
             listener.onGetTransactionSuccess(transactions);
         }
-        return null;
     }
 
     public interface OnGetTransactionListener{

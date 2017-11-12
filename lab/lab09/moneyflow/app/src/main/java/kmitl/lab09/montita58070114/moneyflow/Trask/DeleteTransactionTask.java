@@ -5,9 +5,6 @@ import android.os.AsyncTask;
 import kmitl.lab09.montita58070114.moneyflow.Database.TransactionDB;
 import kmitl.lab09.montita58070114.moneyflow.model.Transaction;
 
-/**
- * Created by montitawichianchai on 11/11/2017 AD.
- */
 
 public class DeleteTransactionTask extends AsyncTask<Void, Void, Void> {
     private TransactionDB transactionDB;
