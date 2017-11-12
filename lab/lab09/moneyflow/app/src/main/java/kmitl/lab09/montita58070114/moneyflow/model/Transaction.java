@@ -20,32 +20,29 @@ public class Transaction implements Parcelable {
     @ColumnInfo(name = "TRANSACTION_TYPE")
     private String transactionType;
 
-    public Transaction() {
-    }
-
     public Transaction(String note, int amount, String transactionType) {
         this.note = note;
         this.amount = amount;
         this.transactionType = transactionType;
     }
 
+    public static class TransactionExtraName {
+        public static final String TRANSACTION_EXTRA_NAME = "transaction";
+    }
+
     protected Transaction(Parcel in) {
         id = in.readInt();
-        amount = in.readInt();
         note = in.readString();
+        amount = in.readInt();
         transactionType = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
-        dest.writeInt(amount);
         dest.writeString(note);
+        dest.writeInt(amount);
         dest.writeString(transactionType);
-    }
-
-    public static class TransactionExtraName {
-        public static final String TRANSACTION_EXTRA_NAME = "transaction";
     }
 
     @Override
