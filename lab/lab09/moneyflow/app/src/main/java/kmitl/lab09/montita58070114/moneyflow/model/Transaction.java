@@ -102,6 +102,6 @@ public class Transaction implements Parcelable {
 
     @Override
     public String toString() {
-        return String.format("Type: %s \n note: %s \n amount: %s", transactionType, note, amount);
+        return String.format("Type: %s \n Note: %s \n Amount: %s", transactionType, note, amount);
     }
 }
