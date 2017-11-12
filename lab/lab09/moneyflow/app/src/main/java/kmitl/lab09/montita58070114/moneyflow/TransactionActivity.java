@@ -109,11 +109,11 @@ public class TransactionActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case (R.id.btnDelete):
+            case R.id.btnDelete:
                 delete();
                 finish();
                 break;
-            case (R.id.btnSave):
+            case R.id.btnSave:
                 save();
                 finish();
                 break;
