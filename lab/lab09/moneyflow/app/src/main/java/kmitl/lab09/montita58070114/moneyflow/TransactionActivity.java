@@ -21,7 +21,7 @@ public class TransactionActivity extends AppCompatActivity implements View.OnCli
     private RadioGroup radioType;
     private EditText etNote, etAmount;
     private Button btnSave, btnDelete;
-    private Transaction mTransaction;
+    private Transaction transaction;
     private TransactionDB transactionDB;
 
     @Override
@@ -37,10 +37,9 @@ public class TransactionActivity extends AppCompatActivity implements View.OnCli
         btnSave.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
 
-        mTransaction = getIntent().getParcelableExtra(TRANSACTION_EXTRA_NAME);
+        transaction = getIntent().getParcelableExtra(TRANSACTION_EXTRA_NAME);
 
         initDB();
-
         setupInfo();
 
 
@@ -53,14 +52,14 @@ public class TransactionActivity extends AppCompatActivity implements View.OnCli
 
     private void setupInfo() {
 
-        if (mTransaction != null) {
-            if (mTransaction.getTransactionType().equals(R.string.income)) {
+        if (transaction != null) {
+            if (transaction.getTransactionType().equals(R.string.income)) {
                 radioType.check(R.id.income);
             } else {
                 radioType.check(R.id.expense);
             }
-            etNote.setText(mTransaction.getNote());
-            etAmount.setText(String.valueOf(mTransaction.getAmount()));
+            etNote.setText(transaction.getNote());
+            etAmount.setText(String.valueOf(transaction.getAmount()));
             btnDelete.setVisibility(View.VISIBLE);
         } else {
             btnDelete.setVisibility(View.GONE);
@@ -92,9 +91,9 @@ public class TransactionActivity extends AppCompatActivity implements View.OnCli
 
         Transaction transaction = new Transaction(note, amount, transactionType);
 
-        if (mTransaction != null) {
-            mTransaction.updateInfo(transaction);
-            new UpdateTransactionTask(transactionDB, mTransaction).execute();
+        if (this.transaction != null) {
+            this.transaction.updateInfo(transaction);
+            new UpdateTransactionTask(transactionDB, this.transaction).execute();
 
         } else {
             new InsertTransactionTask(transactionDB, transaction).execute();
@@ -103,7 +102,7 @@ public class TransactionActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void delete() {
-        new DeleteTransactionTask(transactionDB, mTransaction).execute();
+        new DeleteTransactionTask(transactionDB, transaction).execute();
     }
 
 
