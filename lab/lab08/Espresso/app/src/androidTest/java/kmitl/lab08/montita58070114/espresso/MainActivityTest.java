@@ -35,6 +35,7 @@ public class MainActivityTest {
     public void notFillNameAgeCase() {
         onView(withId(R.id.editTExtName)).check(matches(withText("")));
         onView(withId(R.id.editTextAge)).check(matches(withText("")));
+        closeSoftKeyboard();
         onView(withId(R.id.buttonAdded)).perform(click());
         onView(withText("Please Enter user info")).check(matches(isDisplayed()));
     }
@@ -44,6 +45,7 @@ public class MainActivityTest {
     public void notFillNameCase() {
         onView(withId(R.id.editTExtName)).check(matches(withText("")));
         onView(withId(R.id.editTextAge)).perform(replaceText("20"));
+        closeSoftKeyboard();
         onView(withId(R.id.buttonAdded)).perform(click());
         onView(withText("Please Enter user info")).check(matches(isDisplayed()));
     }
@@ -59,6 +61,7 @@ public class MainActivityTest {
     @Test
     public void notFillAgeCase() {
         onView(withId(R.id.editTExtName)).perform(replaceText("Ying"));
+        closeSoftKeyboard();
         onView(withId(R.id.editTextAge)).check(matches(withText("")));
         onView(withId(R.id.buttonAdded)).perform(click());
         onView(withText("Please Enter user info")).check(matches(isDisplayed()));
@@ -80,6 +83,7 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.list)
                 .atPositionOnView(0, R.id.textAge))
                 .check(matches(withText("20")));
+        onView(withId(R.id.buttonClearList)).perform(click());
     }
 
     //โดยกรอก Name=Ladarat และ Age=20 กดปุ่ม ADDED และกด GO TO LIST จะต้องเจอ Ladarat อายุ 20 ใน ListView ลำดับที่ 2
@@ -102,6 +106,7 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.list)
                 .atPositionOnView(1, R.id.textAge))
                 .check(matches(withText("20")));
+        onView(withId(R.id.buttonClearList)).perform(click());
 
 
     }
@@ -130,6 +135,7 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.list)
                 .atPositionOnView(2, R.id.textAge))
                 .check(matches(withText("80")));
+        onView(withId(R.id.buttonClearList)).perform(click());
     }
 
     //โดยกรอก Name=Prayoch และ Age=60 กดปุ่ม ADDED และกด GO TO LIST จะต้องเจอ Prayoch อายุ 60 ใน ListView ลำดับที่ 4
@@ -160,6 +166,7 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.list)
                 .atPositionOnView(3, R.id.textAge))
                 .check(matches(withText("60")));
+        onView(withId(R.id.buttonClearList)).perform(click());
 
     }
 
@@ -196,6 +203,7 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.list)
                 .atPositionOnView(4, R.id.textAge))
                 .check(matches(withText("50")));
+        onView(withId(R.id.buttonClearList)).perform(click());
 
     }
 
